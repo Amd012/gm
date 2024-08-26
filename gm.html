@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Good Morning, Hanu!</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(180deg, #0f2027 0%, #203a43 100%);
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+
+       
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: twinkle 2s infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: 0.5;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .sunrise {
+            position: absolute;
+            bottom: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, #ffdd00 0%, #ff6f00 70%);
+            border-radius: 50%;
+            box-shadow: 0 0 100px rgba(255, 165, 0, 0.8);
+            animation: riseUp 15s ease-in-out forwards;
+        }
+
+        @keyframes riseUp {
+            0% {
+                bottom: -200px;
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                bottom: 50px;
+                opacity: 1;
+                background: radial-gradient(circle, #ffff00 0%, #ff6600 70%);
+            }
+        }
+
+        .clouds {
+            position: absolute;
+            top: 10%;
+            left: 0;
+            width: 100%;
+            height: 120px;
+            background: url('https://www.transparenttextures.com/patterns/asfalt-dark.png') repeat-x;
+            opacity: 0.5;
+            animation: moveClouds 40s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes moveClouds {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 100% 0;
+            }
+        }
+
+        #message {
+            font-size: 3.5em;
+            font-weight: bolder;
+            color: #ffffff;
+            text-align: center;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 215, 0, 0.8);
+            opacity: 0;
+            animation: fadeInText 6s ease-in forwards;
+            z-index: 2;
+            font-family: 'Dancing Script', cursive; 
+        }
+
+        @keyframes fadeInText {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        .sunburst {
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.7), rgba(255, 215, 0, 0) 70%);
+            opacity: 0;
+            animation: burstSun 3s forwards;
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        @keyframes burstSun {
+            0% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1.8);
+            }
+        }
+
+        .shine {
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0) 70%);
+            opacity: 0;
+            animation: shineEffect 3s forwards;
+            pointer-events: none;
+            z-index: 4;
+        }
+
+        @keyframes shineEffect {
+            0% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1.5);
+            }
+        }
+    </style>
+</head>
+<body onclick="revealSunburst()">
+    
+    <div class="star" style="top: 5%; left: 10%; animation-delay: 0s;"></div>
+    <div class="star" style="top: 20%; left: 60%; animation-delay: 0.5s;"></div>
+    <div class="star" style="top: 35%; left: 30%; animation-delay: 1s;"></div>
+    <div class="star" style="top: 50%; left: 80%; animation-delay: 1.5s;"></div>
+    <div class="star" style="top: 70%; left: 20%; animation-delay: 2s;"></div>
+
+   
+    <div class="clouds"></div>
+    <div class="sunrise"></div>
+    <div id="message">Good Morning Dear<br>Hanu chaaan🥰💞</div>
+
+    <script>
+        function revealSunburst() {
+            
+            const sunburst = document.createElement("div");
+            sunburst.className = "sunburst";
+            document.body.appendChild(sunburst);
+
+           
+            const shine = document.createElement("div");
+            shine.className = "shine";
+            document.body.appendChild(shine);
+
+           
+            setTimeout(() => {
+                sunburst.remove();
+                shine.remove();
+            }, 3000);
+        }
+
+        
+        function createStars() {
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                star.style.top = `${Math.random() * 100}vh`;
+                star.style.left = `${Math.random() * 100}vw`;
+                star.style.animationDelay = `${Math.random() * 2}s`;
+                document.body.appendChild(star);
+            }
+        }
+
+        createStars();
+    </script>
+</body>
+</html>
